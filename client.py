@@ -9,11 +9,13 @@ GPIO.setup(21, GPIO.OUT)
 
 def post_to_server(payload):
     r = requests.post('http://18.220.62.23:8080/', json=payload)
+    j = r.json().keys()
     print(r.json())
-    if r.json()['21'] == '1':
-        GPIO.output(21, True)
-    else:
-        GPIO.output(21, False)
+    GPIO.output(j[0], r.json()[j[0]])
+    # if r.json()['21'] == '1':
+    #     GPIO.output(21, True)
+    # else:
+    #     GPIO.output(21, False)
     return
 
 while True:
