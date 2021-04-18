@@ -7,12 +7,12 @@ app = Flask(__name__)
 def index():
     if(request.method == 'POST'):
         pi_json = request.get_json()
-        if pi_json['20']:
+        if pi_json['20'] == '1':
             # insert reg in database
-            return jsonify({'21':'on'}), 201
+            return jsonify({'21':'1'}), 201
         else:
             # insert reg in database
-            return jsonify({'21':'off'}), 201
+            return jsonify({'21':'0'}), 201
     else:
         return jsonify({'about':'Hello pimochis'})
 
