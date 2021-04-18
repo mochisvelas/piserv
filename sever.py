@@ -1,5 +1,7 @@
 from flask import Flask, jsonify, request
 import requests
+import mysql.connector
+
 app = Flask(__name__)
 
 # post action from breadboard and expect a response
@@ -9,10 +11,10 @@ def index():
         pi_json = request.get_json()
         if pi_json['20'] == '1':
             # insert reg in database
-            return jsonify({'21':'1'}), 201
+            return jsonify({'21':'True'}), 201
         else:
             # insert reg in database
-            return jsonify({'21':'0'}), 201
+            return jsonify({'21':'False'}), 201
     else:
         return jsonify({'about':'Hello pimochis'})
 
