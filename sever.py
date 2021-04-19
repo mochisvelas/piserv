@@ -63,9 +63,9 @@ def index():
 #def get_input_pin(pin, energy):
 #    return jsonify({str(pin): str(energy)})
 
-# query database
+# query database-HTML
 @app.route('/maria', methods=['GET'])
-def get_input_pin():
+def get_html_table():
     data_all = []
     mycursor.execute("select * from test")
     for i in mycursor:
@@ -73,6 +73,14 @@ def get_input_pin():
     columnNames = ['id', 'datetime', 'status']
     return render_template('maria.html', records=data_all, colnames=columnNames)
 
+# query database-JSON
+@app.route('/json', methods=['GET'])
+def get_json():
+    data_all = []
+    mycursor.execute("select * from test")
+    for i in mycursor:
+        data_all.append({'id':i[0], 'datetime':i[1], 'status':i[2]})
+    return jsonify(data_all)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
