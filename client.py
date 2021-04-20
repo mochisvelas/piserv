@@ -8,7 +8,8 @@ GPIO.setup(20, GPIO.IN)
 GPIO.setup(21, GPIO.OUT)
 
 def post_to_server(payload):
-    r = requests.post('http://18.191.96.254:8080/', json=payload)
+    ip = 'http://18.191.96.254:8080/'
+    r = requests.post(ip, json=payload)
     j = r.json()
     k = list(j)
     GPIO.output(int(k[0]), j[k[0]] == 'True')
