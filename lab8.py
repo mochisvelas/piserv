@@ -19,20 +19,5 @@ def index():
     else:
         return jsonify({'Home':'pimochis'})
 
-
-# query database-HTML
-@app.route('/html', methods=['GET'])
-def get_html_table():
-    mycursor.execute("select * from test")
-    reg_data = mycursor.fetchall()
-    return render_template('maria.html', data=reg_data)
-
-# query database-JSON
-@app.route('/json', methods=['GET'])
-def get_json():
-    mycursor.execute("select * from test")
-    reg_data = mycursor.fetchall()
-    return jsonify(reg_data)
-
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
