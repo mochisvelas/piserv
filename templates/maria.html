@@ -4,20 +4,20 @@
 </head>
 <body>
 <table border="1">
-    <thead>
-        <tr>
-            {% for col in colnames %}
-            <th>{{ col }}</th>
-            {% endfor %}
-        </tr>
-    </thead>
+  <thead>
+    <tr>
+        <th>id</th>
+        <th>timestamp</th>
+        <th>status</th>
+    </tr>
+    </thead>    
     <tbody>
-        {% for record in records %}
-        <tr>
-            {% for col in colnames %}
-            <td>{{ record[col] }}</td>
-            {% endfor %}
-        </tr>
+     {% for row in data %}    
+            <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
+            </tr>
         {% endfor %}
     </tbody>
 </table>
