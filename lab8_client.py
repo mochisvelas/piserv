@@ -23,7 +23,6 @@ GPIO.setup(20, GPIO.IN) # SWITCH
 # 6 - 1011111#
 # 7 - 1110000#
 # 8 - 1111111#
-# 8 - 1110011#
 
 def post_to_server(payload):
     ip = 'http://18.224.139.147:8080/'
