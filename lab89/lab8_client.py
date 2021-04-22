@@ -4,15 +4,26 @@ import RPi.GPIO as GPIO
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(0, GPIO.OUT) # DISPLAY A
-GPIO.setup(1, GPIO.OUT) # DISPLAY B
-GPIO.setup(7, GPIO.OUT) # DISPLAY C
-GPIO.setup(8, GPIO.OUT) # DISPLAY D
-GPIO.setup(4, GPIO.OUT) # DISPLAY E
-GPIO.setup(5, GPIO.OUT) # DISPLAY F
-GPIO.setup(6, GPIO.OUT) # DISPLAY G
-GPIO.setup(9, GPIO.OUT) # RELAY
+GPIO.setup(0, GPIO.OUT) # DISPLAY A - orange
+GPIO.setup(1, GPIO.OUT) # DISPLAY B - blue
+GPIO.setup(7, GPIO.OUT) # DISPLAY C - brown
+GPIO.setup(8, GPIO.OUT) # DISPLAY D - purple
+GPIO.setup(4, GPIO.OUT) # DISPLAY E - white
+GPIO.setup(5, GPIO.OUT) # DISPLAY F - black
+GPIO.setup(6, GPIO.OUT) # DISPLAY G - yellow
+GPIO.setup(9, GPIO.OUT) # RELAY - green
 GPIO.setup(20, GPIO.IN) # SWITCH
+
+# 0 - 1111110#
+# 1 - 0110000#
+# 2 - 1101101#
+# 3 - 1111001#
+# 4 - 0110011#
+# 5 - 1011011#
+# 6 - 1011111#
+# 7 - 1110000#
+# 8 - 1111111#
+# 9 - 1110011#
 
 def post_to_server(payload):
     ip = 'http://18.224.139.147:8080/'
@@ -25,7 +36,6 @@ def post_to_server(payload):
     GPIO.output(4, binary[4] == '1')
     GPIO.output(5, binary[5] == '1')
     GPIO.output(6, binary[6] == '1')
-    GPIO.output(9, binary[7] == '1')
     return
 
 while True:

@@ -4,13 +4,14 @@ import RPi.GPIO as GPIO
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(0, GPIO.OUT) # DISPLAY A
-GPIO.setup(1, GPIO.OUT) # DISPLAY B
-GPIO.setup(7, GPIO.OUT) # DISPLAY C
-GPIO.setup(8, GPIO.OUT) # DISPLAY D
-GPIO.setup(4, GPIO.OUT) # DISPLAY E
-GPIO.setup(5, GPIO.OUT) # DISPLAY F
-GPIO.setup(6, GPIO.OUT) # DISPLAY G
+GPIO.setup(0, GPIO.OUT) # DISPLAY A - orange
+GPIO.setup(1, GPIO.OUT) # DISPLAY B - blue
+GPIO.setup(7, GPIO.OUT) # DISPLAY C - brown
+GPIO.setup(8, GPIO.OUT) # DISPLAY D - purple
+GPIO.setup(4, GPIO.OUT) # DISPLAY E - white
+GPIO.setup(5, GPIO.OUT) # DISPLAY F - black
+GPIO.setup(6, GPIO.OUT) # DISPLAY G - yellow
+GPIO.setup(9, GPIO.OUT) # RELAY - green
 GPIO.setup(20, GPIO.IN) # SWITCH
 
 def post_to_server(payload):
@@ -24,6 +25,7 @@ def post_to_server(payload):
     GPIO.output(4, binary[4] == '1')
     GPIO.output(5, binary[5] == '1')
     GPIO.output(6, binary[6] == '1')
+    GPIO.output(9, binary[7] == '1')
     return
 
 while True:
