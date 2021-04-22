@@ -1,8 +1,5 @@
 from flask import Flask, jsonify, request, render_template
 import requests
-import mysql.connector
-import time
-from datetime import datetime
 
 app = Flask(__name__)
 
@@ -11,8 +8,10 @@ app = Flask(__name__)
 def index():
     if(request.method == 'POST'):
         pi_json = request.get_json()
-        binary = '0000000'
+        #binary = '11110010'
         if pi_json['20'] == '1':
+            print('Insert binary number:')
+            binary = input()
             return jsonify({'display': binary}), 201
         else:
             return jsonify({'display': binary}), 201
