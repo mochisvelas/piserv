@@ -4,13 +4,13 @@ import RPi.GPIO as GPIO
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(0, GPIO.OUT) # DISPLAY A
-GPIO.setup(1, GPIO.OUT) # DISPLAY B
-GPIO.setup(7, GPIO.OUT) # DISPLAY C
-GPIO.setup(8, GPIO.OUT) # DISPLAY D
-GPIO.setup(4, GPIO.OUT) # DISPLAY E
-GPIO.setup(5, GPIO.OUT) # DISPLAY F
-GPIO.setup(6, GPIO.OUT) # DISPLAY G
+GPIO.setup(0, GPIO.OUT) # DISPLAY A - orange
+GPIO.setup(1, GPIO.OUT) # DISPLAY B - purple
+GPIO.setup(7, GPIO.OUT) # DISPLAY C - brown
+GPIO.setup(8, GPIO.OUT) # DISPLAY D - purple
+GPIO.setup(4, GPIO.OUT) # DISPLAY E - white
+GPIO.setup(5, GPIO.OUT) # DISPLAY F - black
+GPIO.setup(6, GPIO.OUT) # DISPLAY G - yellow
 GPIO.setup(9, GPIO.OUT) # RELAY
 GPIO.setup(20, GPIO.IN) # SWITCH
 
