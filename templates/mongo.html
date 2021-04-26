@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<table border="1">
+  <thead>
+    <tr>
+        <th>id</th>
+        <th>timestamp</th>
+        <th>status</th>
+    </tr>
+    </thead>    
+    <tbody>
+     {% for row in data %}    
+            <tr>
+                <td>{{row['_id']}}</td>
+                <td>{{row['datetime']}}</td>
+                <td>{{row['status']}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>
