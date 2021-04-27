@@ -48,7 +48,8 @@ def index():
             mycol.insert_one({'datetime':now, 'status':'off'})
             return jsonify({'21':'False'}), 201
     else:
-        return jsonify({'Home':'pimochis'})
+        reg_data = [get_data(i) for i in mycol.find()]
+        return render_template('main.html', data=reg_data)
 
 
 # query database-HTML
