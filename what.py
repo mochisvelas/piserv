@@ -21,8 +21,13 @@ mycol = mydb['testcol']
 #mycol.insert_one(post)
 
 #res = mycol.find({"name":"Brenner"})
-res = mycol.find({})
-print(res)
+#res = mycol.find({})
+#print(res)
+
+last_reg = mycol.find().sort([('_id', -1)]).limit(1)[0]
+print(last_reg)
+last_reg = str(last_reg['_id'])
+print(last_reg)
 
 
 #for r in res:
