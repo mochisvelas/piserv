@@ -77,7 +77,7 @@ def index():
                 display = get_display(total_decimal)
                 display = display + '0'
 
-        return jsonify({'display':display}), 201
+        return jsonify({'display':display, 'decimal':total_decimal}), 201
 
     else:
     #return if GET
