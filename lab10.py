@@ -71,11 +71,11 @@ def index():
         if total_decimal >= 10:
                 units = total_decimal - 10
                 display = get_display(units)
-                display = '1' + display
+                display = display + '1'
 
         else:
                 display = get_display(total_decimal)
-                display = '0' + display
+                display = display + '0'
 
         return jsonify({'display':display}), 201
 
