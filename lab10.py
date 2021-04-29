@@ -10,7 +10,7 @@ mydb = client['lab10']
 pinarycol = mydb['pinary']
 webimalcol = mydb['webimal']
 
-active = False
+#active = False
 
 # Get document id in string format
 def get_data(data):
@@ -28,23 +28,23 @@ def get_display(num):
     if num == 0:
         display = '1111110'
     elif num == 1:
-        display = '0011000'
+        display = '0110000'
     elif num == 2:
         display = '1101101'
     elif num == 3:
-        display = '0111101'
+        display = '1111001'
     elif num == 4:
-        display = '0011011'
+        display = '0110011'
     elif num == 5:
-        display = '0110111'
+        display = '1011011'
     elif num == 6:
-        display = '1110111'
+        display = '1011111'
     elif num == 7:
-        display = '0011100'
+        display = '1110000'
     elif num == 8:
         display = '1111111'
     else:
-        display = '0011111'
+        display = '1110011'
 
     return display
 
@@ -52,31 +52,36 @@ def get_display(num):
 @app.route("/", methods=['GET', 'POST'])
 def index():
 
-    global active
+    #global active
 
     if(request.method == 'POST'):
 
         # update pinary collection with lastest raspi post
         pi_json = request.get_json()
         pinary = pi_json['pinary']
+        pinarycol.insert_one({'pinary':str(pinary)})
+        #print(pinary)
         last_pinary = get_last_reg(pinarycol)
-        if pinary != last_pinary['pinary']:
-            pinarycol.insert_one({'pinary':pinary})
+        print(last_pinary)
+        #print(last_pinary)
+        #if pinary != last_pinary['pinary']:
+        #    pinarycol.insert_one({'pinary':str(pinary)})
 
         #global active
 
-        if not active:
-            return jsonify({'active':'False'})
+        #if not active:
+        #    return jsonify({'active':'False'})
 
         pinary2decimal = int(pinary, 2)
 
-        last_reg = get_last_reg(webimalcol)
-        #aux_reg = get_last_reg(webimalcol)
+        #last_reg = get_last_reg(webimalcol)
+        aux_reg = get_last_reg(webimalcol)
         # Wait until form() updates webimal
-        #while True:
-        #    last_reg = get_last_reg(webimalcol)
-        #    if last_reg['_id'] != aux_reg['_id']:
-        #        break
+        while True:
+            last_reg = get_last_reg(webimalcol)
+            #print('pi is waiting')
+            if last_reg['_id'] != aux_reg['_id']:
+                break
 
 
         total_decimal = pinary2decimal - int(last_reg['webimal'])
@@ -92,7 +97,7 @@ def index():
                 display = get_display(total_decimal)
                 display = display + '0'
 
-        active = False
+        #active = False
 
         return jsonify({'display':display, 'decimal':total_decimal, 'active':'True'}), 201
 
@@ -104,21 +109,23 @@ def index():
 @app.route("/form", methods=['GET', 'POST'])
 def form():
 
-    global active
+    #global active
 
     if(request.method == 'POST'):
 	# get and  insert decimal into webimal collection
         webimal = request.form.get("inputval")
         last_webimal = get_last_reg(webimalcol)
-        if webimal != last_webimal['webimal']:
-            webimalcol.insert_one({'webimal':webimal})
+        #if webimal != last_webimal['webimal']:
+        #    webimalcol.insert_one({'webimal':webimal})
+        webimalcol.insert_one({'webimal':webimal})
 
         last_pinary = pinarycol.find().sort([('_id', -1)]).limit(1)[0]['pinary']
-        active = True
+        #active = True
         return render_template('lab10.html', data=last_pinary)
     else:
 	# show last pinary document
         last_pinary = pinarycol.find().sort([('_id', -1)]).limit(1)[0]['pinary']
+        print(last_pinary)
         #print(last_pinary)
         return render_template('lab10.html', data=last_pinary)
 
