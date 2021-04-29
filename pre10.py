@@ -36,23 +36,10 @@ def index():
                 break
 
         total_time = er_time * int(last_reg['form_time'])
-        ## POSSIBLE LAB 10
-
-        ## PREVIOUS LABS
-        #if pi_json['20'] == '1':
-        #    aux_reg = get_last_reg()
-
-            # Wait until form() updates database
-        #    while True:
-        #        last_reg = get_last_reg()
-        #        if last_reg['_id'] != aux_reg['_id']:
-        #            break
-        ## PREVIOUS LABS
 
         return jsonify({'total_time':total_time}), 201
-        #else:
-        #    return jsonify({'Pi sent': '0'}), 201
 
+    else:
     #return if GET
     return jsonify({'Home':'pimochis'})
 
@@ -61,7 +48,6 @@ def index():
 def form():
     if(request.method == 'POST'):
         form_time = request.form.get("inputval")
-        #print(str(status))
         mycol.insert_one({'form_time':form_time})
         return render_template('pre10.html')
     else:
