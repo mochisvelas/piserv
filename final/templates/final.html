@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<h2>The last pi input was: {{ data }}</h2>
+	<form action="{{ url_for("form")}}" method="post">
+	<label for="input">Insert your input:</label>
+	<input type="text" id="input" name="inputval" placeholder="Input">
+	<label for="check">Check if...</label>
+	<input type="checkbox" id="check" name="inputcheck">
+	<button type="submit">Set</button>
+	</form>
+</body>
+</html>
